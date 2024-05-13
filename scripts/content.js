@@ -1,7 +1,10 @@
+document.addEventListener("yt-navigate-finish", hideElements);
+
 function hideElements() {
+  removeCSS();
+
   const url = window.location.href;
 
-  // home page
   if (
     url === "https://www.youtube.com/" ||
     url === "https://www.youtube.com/?gl=US"
@@ -13,16 +16,10 @@ function hideElements() {
     `;
 
     const style = document.createElement("style");
-    style.id = "youtube_home_page_concealer";
+    style.id = "youtube_content_concealer";
     style.appendChild(document.createTextNode(css));
-    document.head.appendChild(style); // manual removal necessary?
-  } else {
-    // remove from other sources
-    removeCSS("#youtube_home_page_concealer");
-  }
-
-  // video page
-  if (url.includes("watch")) {
+    document.head.appendChild(style);
+  } else if (url.includes("watch")) {
     const css = `
       #comments, #secondary {
         display: none !important;
@@ -30,24 +27,19 @@ function hideElements() {
     `;
 
     const style = document.createElement("style");
-    style.id = "youtube_video_page_concealer";
+    style.id = "youtube_content_concealer";
     style.appendChild(document.createTextNode(css));
-    document.head.appendChild(style); // manual removal necessary?
-  } else {
-    // remove from other sources
-    removeCSS("#youtube_video_page_concealer");
+    document.head.appendChild(style);
   }
 
   // if (url.includes("results")) {}
 }
 
-hideElements();
-
-function removeCSS(styleId) {
-  const styleElement = document.head.querySelector(styleId);
+function removeCSS() {
+  const styleElement = document.head.querySelector(
+    "#youtube_content_concealer"
+  );
   if (styleElement) {
     styleElement.remove();
-  } else {
-    console.log("not found");
   }
 }
