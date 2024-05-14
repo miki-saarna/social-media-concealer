@@ -7,7 +7,7 @@
 })();
 
 function hideElements() {
-  removeCSS();
+  removeHider();
 
   const url = window.location.href;
 
@@ -41,7 +41,7 @@ function hideElements() {
   // if (url.includes("results")) {}
 }
 
-function removeCSS() {
+function removeHider() {
   const styleElement = document.head.querySelector(
     "#youtube_content_concealer"
   );
