@@ -1,4 +1,10 @@
-document.addEventListener("yt-navigate-finish", hideElements);
+(() => {
+  hideElements();
+
+  document.addEventListener("yt-navigate-finish", () => {
+    hideElements();
+  });
+})();
 
 function hideElements() {
   removeCSS();
