@@ -2,19 +2,22 @@
   "manifest_version": 3,
   "name": "Social Media Concealer",
   "description": "Conceals distracting elements on various social media websites",
-  "version": "1.0",
+  "version": "1.0.0",
+  "permissions": ["tabs"],
   "action": {
-    "default_popup": "popup/popup.html",
-    "default_icon": "images/logo.png"
+    "default_popup": "js/index.html",
+    "default_title": "React Chrome Extension"
   },
   "content_scripts": [
     {
       "js": ["scripts/content.js"],
-      "matches": ["*://*.youtube.com/*"]
+      "matches": ["*://*.youtube.com/*"],
+      "run_at": "document_idle"
     },
     {
       "js": ["scripts/content/x.js"],
-      "matches": ["*://*.twitter.com/*"]
+      "matches": ["*://*.twitter.com/*"],
+      "run_at": "document_idle"
     }
   ]
 }
