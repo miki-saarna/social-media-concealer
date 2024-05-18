@@ -11,6 +11,10 @@
     {
       "js": ["scripts/content.js"],
       "matches": ["*://*.youtube.com/*"]
+    },
+    {
+      "js": ["scripts/content/x.js"],
+      "matches": ["*://*.twitter.com/*"]
     }
   ]
 }
