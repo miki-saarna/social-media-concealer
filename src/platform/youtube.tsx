@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import concealer from "../middleware";
+import Switch from "../components/switch";
 
 export default function YouTubeConcealer() {
   const [concealYoutube, setConcealYoutube] = useState(true);
@@ -9,8 +10,12 @@ export default function YouTubeConcealer() {
   }, [concealYoutube]);
 
   return (
-    <button onClick={() => setConcealYoutube((prevValue) => !prevValue)}>
-      {concealYoutube ? "Display" : "Hide"} YouTube
-    </button>
+    <div className="flex justify-between items-center">
+      <div>YouTube</div>
+      <Switch
+        concealYoutube={concealYoutube}
+        setConcealYoutube={setConcealYoutube}
+      />
+    </div>
   );
 }
