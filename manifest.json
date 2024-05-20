@@ -19,5 +19,8 @@
       "matches": ["*://*.twitter.com/*"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "background": {
+    "service_worker": "scripts/background.js"
+  }
 }

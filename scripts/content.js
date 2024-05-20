@@ -1,5 +1,12 @@
 (() => {
-  hideElements();
+  chrome.runtime.sendMessage(
+    { type: "getState", key: "youtube" },
+    function (response) {
+      if (response.value) {
+        hideElements();
+      }
+    }
+  );
 
   // document.addEventListener("yt-navigate-finish", () => {
   //   hideElements();
@@ -8,16 +15,25 @@
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "changeDOM") {
-    if (message.data.conceal) {
+    const isConcealed = message.data.conceal;
+    setState("youtube", isConcealed);
+    if (isConcealed) {
       hideElements();
     } else {
       location.reload();
       // removeHider();
     }
-    // console.log("message", message);
-    // console.log("sender", sender);
   }
 });
+
+function setState(platform, conceal) {
+  chrome.runtime.sendMessage(
+    { type: "setState", key: platform, value: conceal },
+    function (response) {
+      console.log(response.status);
+    }
+  );
+}
 
 function hideElements() {
   // removeHider();
