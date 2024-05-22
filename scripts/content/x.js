@@ -11,7 +11,7 @@ function hideElements() {
 
   const url = window.location.href;
 
-  if (url === "https://twitter.com/home") {
+  if (url === "https://twitter.com/home" || url === "https://x.com/home") {
     const css = `
       .css-175oi2r.r-f8sm7e.r-13qz1uu.r-1ye8kvj {
         visibility: hidden !important;
