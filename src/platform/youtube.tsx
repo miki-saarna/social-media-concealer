@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import concealer from "../middleware";
+import { concealer } from "../middleware";
 import Switch from "../components/switch";
 
 export default function YouTubeConcealer() {
@@ -12,10 +12,7 @@ export default function YouTubeConcealer() {
   return (
     <div className="flex justify-between items-center">
       <div>YouTube</div>
-      <Switch
-        concealYoutube={concealYoutube}
-        setConcealYoutube={setConcealYoutube}
-      />
+      <Switch conceal={concealYoutube} setConceal={setConcealYoutube} />
     </div>
   );
 }
