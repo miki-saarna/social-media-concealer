@@ -1,10 +1,39 @@
 (() => {
-  hideElements();
+  chrome.runtime.sendMessage(
+    { type: "getState", key: "x" },
+    function (response) {
+      if (response.value) {
+        hideElements();
+      }
+    }
+  );
 
   // document.addEventListener("yt-navigate-finish", () => {
   //   hideElements();
   // });
 })();
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "changeDOM") {
+    const isConcealed = message.data.conceal;
+    setState("x", isConcealed);
+    if (isConcealed) {
+      hideElements();
+    } else {
+      location.reload();
+      // removeHider();
+    }
+  }
+});
+
+function setState(platform, conceal) {
+  chrome.runtime.sendMessage(
+    { type: "setState", key: platform, value: conceal },
+    function (response) {
+      console.log(response.status);
+    }
+  );
+}
 
 function hideElements() {
   removeHider();
