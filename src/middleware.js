@@ -1,4 +1,4 @@
-export default function concealer(conceal) {
+export function concealer(conceal) {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     const activeTab = tabs[0];
 
@@ -14,5 +14,11 @@ export default function concealer(conceal) {
         console.log(res.status);
       }
     );
+  });
+}
+
+export function getCurrentTabUrl(setCurrentUrl) {
+  chrome.runtime.sendMessage({ action: "getCurrentTabUrl" }, (response) => {
+    setCurrentUrl(response.url);
   });
 }
